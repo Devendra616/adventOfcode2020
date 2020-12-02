@@ -1,6 +1,21 @@
+  const fs = require('fs');
+
 /* Day1 
     https://adventofcode.com/2020/day/1
 */
+
+const readFileAndReturnArrayOfNumbers = (fileLocation) => {
+    const fileContent = fs.readFileSync(fileLocation, 'utf-8');
+    const stringArray = fileContent.trim().split('\n');
+    const parsedAsIntegersArray = stringArray.map(line => {
+      const trimmedLine = line.trim();
+      if (trimmedLine !== '') {
+        return parseInt(trimmedLine);
+      }
+    });
+    return parsedAsIntegersArray
+  }
+
 
 function multiply2(list) {
     let tempArray=[];
@@ -31,6 +46,9 @@ function multiply3(list) {
             }
         }
     }
-
    return result;
 }
+
+const inputArr = readFileAndReturnArrayOfNumbers('./input.txt');
+console.log(multiply2(inputArr));
+console.log(multiply3(inputArr));
